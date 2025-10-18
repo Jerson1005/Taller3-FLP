@@ -19,7 +19,7 @@
 ;;  <expresion>     ::= <numero>
 ;;                      <numero-lit (num)>
 ;;
-;;                  ::= "\"" <identifier> "\""
+;;                  ::= "\"" <string> "\""
 ;;                      <texto-lit (txt)>
 ;;
 ;;                  ::= <identificador>
@@ -185,8 +185,8 @@
 (define init-env
   (lambda ()
     (extend-env
-     '(@a @b @c @d @e) 
-     '(1 2 3 "hola" "FLP") 
+     '(@a @b @c @d @e @concat @add1 @sub1) 
+     '(1 2 3 "hola" "FLP" primitive-@concat primitive-@add1 primitive-@sub1) 
      (empty-env))))
 
 ; buscar-variable: symbol × environment -> valor
@@ -500,7 +500,7 @@
 
 ; Ejercicios:
 
-; ;a)
+; a)
 ; 
 ; declarar (
 ;      @pi = 3.141592653589793;
@@ -514,9 +514,9 @@
 ;    }
 
 
-
-; ;b)
-;Factorial de 5
+; b)
+;
+; Factorial de 5
 ; recursivo
 ;     @factorial (@n) = Si @n entonces
 ;                           ( @n * evaluar @factorial(sub1(@n)) finEval )
@@ -529,6 +529,7 @@
 ;     ) {
 ;        @f5  
 ;     }
+;
 ; Factorial de 10
 ; recursivo
 ;     @factorial (@n) = Si @n entonces
@@ -541,9 +542,10 @@
 ;         @f10 = evaluar @factorial (10) finEval % <-- Solo se calcula el factorial de 10
 ;     ) {
 ;         @f10 
-:     }
+;     }
 
-; ;c)
+
+; c)
 ; 
 ; recursivo
 ;      @sumar(@x,@y) = procedimiento (@x,@y) haga
@@ -557,10 +559,12 @@
 ;      evaluar @sumar(4,5) finEval
 ; 
 
+
 ; d)
+;
 ; Resta
 ; recursivo
-;     @restar (@a, @b) = Si @b entonces  ; <-- Condición simplificada
+;     @restar (@a, @b) = Si @b entonces 
 ;                           evaluar @restar (sub1(@a), sub1(@b)) finEval
 ;                       sino
 ;                           @a
@@ -571,6 +575,7 @@
 ;     ) {
 ;         @resultado_resta
 ;     }
+;
 ; Multiplicacion
 ; recursivo
 ;     @restar (@a, @b) = Si @b entonces
@@ -605,6 +610,42 @@
 ;    }
 
 
+; e)
+;
+; (eval-program
+;  (scan&parse
+;   "recursivo
+;     @integrantes () = \"Robinson-y-Sara\"
+; 
+;     @saludador_final () =
+;       (\"Hola:\" concat evaluar @integrantes () finEval)
+; 
+;     @saludar (@f) = @saludador_final
+;     
+; en
+;     declarar (
+;         @decorate = evaluar @saludar (@integrantes) finEval
+;     ) {
+;         evaluar @decorate () finEval
+;     }"))
 
 
+; f)
+;
+; (eval-program
+;  (scan&parse
+;   "recursivo
+;     @integrantes () = \"Robinson-y-Sara\"
+; 
+;     @saludar (@f, @msg) = procedimiento () haga
+;                              ((\"Hola:\" concat evaluar @f () finEval) concat @msg)
+;                           finProc
+;     
+; en
+;     declarar (
+;         @decorate = evaluar @saludar (@integrantes, \"-ProfesoresFLP\") finEval
+;     ) {
+;        
+;         @decorate
+;     }"))
 
