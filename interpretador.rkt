@@ -500,7 +500,7 @@
 
 ; Ejercicios:
 
-; a)
+; ;a)
 ; 
 ; declarar (
 ;      @pi = 3.141592653589793;
@@ -515,8 +515,33 @@
 
 
 
-;b)
-
+; ;b)
+;Factorial de 5
+; recursivo
+;     @factorial (@n) = Si @n entonces
+;                           ( @n * evaluar @factorial(sub1(@n)) finEval )
+;                       sino
+;                           1
+;                       finSI
+; en
+;     declarar (
+;        @f5 = evaluar @factorial (5) finEval % <-- Solo se calcula el factorial de 5
+;     ) {
+;        @f5  
+;     }
+; Factorial de 10
+; recursivo
+;     @factorial (@n) = Si @n entonces
+;                           ( @n * evaluar @factorial(sub1(@n)) finEval )
+;                       sino
+;                           1
+;                       finSI
+; en
+;     declarar (
+;         @f10 = evaluar @factorial (10) finEval % <-- Solo se calcula el factorial de 10
+;     ) {
+;         @f10 
+:     }
 
 ; ;c)
 ; 
@@ -531,6 +556,55 @@
 ;    en
 ;      evaluar @sumar(4,5) finEval
 ; 
+
+; d)
+; Resta
+; recursivo
+;     @restar (@a, @b) = Si @b entonces  ; <-- Condición simplificada
+;                           evaluar @restar (sub1(@a), sub1(@b)) finEval
+;                       sino
+;                           @a
+;                       finSI
+; en
+;     declarar (
+;         @resultado_resta = evaluar @restar (10, 3) finEval
+;     ) {
+;         @resultado_resta
+;     }
+; Multiplicacion
+; recursivo
+;     @restar (@a, @b) = Si @b entonces
+;                          evaluar @restar (sub1(@a), sub1(@b)) finEval
+;                       sino
+;                           @a
+;                       finSI
+;    
+;    @sumar (@a, @b) = Si @b entonces
+;                        evaluar @sumar (add1(@a), sub1(@b)) finEval
+;                    sino
+;                        @a
+;                    finSI
+;    
+;    @multiplicar (@a, @b) = Si @b entonces
+;                                Si evaluar @restar (@b, 1) finEval entonces
+;                                    evaluar @sumar (
+;                                        @a,
+;                                        evaluar @multiplicar (@a, sub1(@b)) finEval
+;                                    ) finEval
+;                                sino
+;                                    @a
+;                                finSI
+;                            sino
+;                                0
+;                            finSI
+; en
+;    declarar (
+;        @resultado_multi = evaluar @multiplicar (10, 3) finEval
+;    ) {
+;        @resultado_multi
+;    }
+
+
 
 
 
