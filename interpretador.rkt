@@ -515,5 +515,22 @@
 
 
 
+;b)
+
+
+; ;c)
+; 
+; recursivo
+;      @sumar(@x,@y) = procedimiento (@x,@y) haga
+;        Si @x entonces
+;          add1( evaluar @sumar( sub1(@x) , @y ) finEval )
+;        sino
+;          @y
+;        finSI
+;      finProc
+;    en
+;      evaluar @sumar(4,5) finEval
+; 
+
 
 
